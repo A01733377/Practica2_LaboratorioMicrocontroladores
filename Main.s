@@ -66,9 +66,11 @@
 PSECT udata
 INPUT:
 	DS 1
+TEMP:
+	DS 1
 CONTADOR1:
 	DS 1
-CONTADOR2:
+RESULT:
 	DS 1
 
 ;
@@ -83,6 +85,8 @@ INICIALIZACION:
 		    
 			MOVLW 0x0F			;todas entradas digitales
 			MOVWF ADCON1,c
+			 			MOVLW	0x09			;inicializar contador en 9
+			MOVWF   RESULT
 			
 			SETF	LATB,c			;PORTB como entrada
 			CLRF	LATD,c			;PORTD como salida
@@ -90,54 +94,14 @@ INICIALIZACION:
 			SETF	TRISB,c			;PORTB como entrada
 			CLRF	TRISD,c			;PORTD como salida
 			CLRF	TRISA,c			;PORTE como salida
-			CLRF    CONTADOR1		;poner a 0 
-			CLRF    CONTADOR2		;poner a 0
+
 			RETURN			
 
 MAIN:
 		CALL 	INICIALIZACION
+
 LOOP:
-    
-		MOVF	PORTB, W            ;mover portb al registro input
-		ANDLW	0x01		    ;aplicar and (mascara)
-    
-    
-    
-    
-    
-    i = 0;
-    
-    while(1){
-  
-    while(i<5 && i >=0){
-    switch (i)
-    
-    case 0:
-    for(j=0,j<=9,j++){
-    ponerNumeroJ(i);
-  
-    }
-    break
-    
-     case 1:
-			MOVF	PORTB, W            ;mover portb al registro input
-}			ANDLW	0x0F		    ;aplicar and (mascara)
-if(i > 5){
-i = 4
-}			MOVWF   INPUT
-else{
-i = 0
-}			MOVF	PORTB, W	    ;mover portb al acumulador
-}			ANDLW	0xF0	            ;aplicar and (mascara)
-			MOVWF   INPUT2		    ;Se mueve el resultado al registro input2
-			SWAPF   INPUT2, 1	    ;Se hace un swap (inversion de nibbles de imput2 y se guarda ahi mismo
-ponerNumeroJ(i){
-cuanto vale i
-velocidad a i	
-  delay(n)			
-}			MOVF    INPUT, W	    ;Se manda a llamar al acumulador el primer sumando (input1)
-			ADDWF   INPUT2,W	    ;al acumulador se le suma input 2 (input + input2)
-			MOVWF   RESULT		    ;el resultado se guarda en el registro result
+
 			
 			MOVLW	0x00		    ;mover 0 al acumulador
 			SUBWF	RESULT,	0,1	    ;restar 0 a la entrada
@@ -178,31 +142,7 @@ velocidad a i
 			MOVLW	0x09		    ;mover 8 al acumulador
 			SUBWF	RESULT,	W	    ;restar 8 a la entrada
 			BZ	NUEVE		    ;caso 8 
-			
-			MOVLW	0x0A		    
-			SUBWF	RESULT,	W	    
-			BZ	DIEZ		     
-			
-			MOVLW	0x0B		    
-			SUBWF	RESULT,	W	    
-			BZ	ONCE		    
-			
-			MOVLW	0x0C		    
-			SUBWF	RESULT,	W	    
-			BZ	DOCE		   
-			
-			MOVLW	0x0D		  
-			SUBWF	RESULT,	W	   
-			BZ	TRECE		   
-			
-			MOVLW	0x0E		    
-			SUBWF	RESULT,	W	   
-			BZ	CATORCE		   
-			
-			MOVLW	0x0F		    
-			SUBWF	RESULT,	W	    
-			BZ	QUINCE		    
-			
+		
 			
 			BRA	DEFAULT
 			
@@ -211,80 +151,61 @@ CERO:
 						    ;salida 0 en display
 		    MOVLW 00111111B
 		    MOVWF PORTD
+		    CALL DELAY
 		    GOTO LOOP
 		    
 UNO:
 		    MOVLW 00000110B		    ;salida 1 en display
 		    MOVWF PORTD
+		    CALL DELAY
 		    GOTO LOOP	    
 		    
 DOS:
 		    MOVLW 01011011B		    ;salida 2 en display
 		    MOVWF PORTD
+		    CALL DELAY
 		    GOTO LOOP	    
 		    
 TRES:
 		    MOVLW 01001111B		   ;salida 3 en display
 		    MOVWF PORTD
+		    CALL DELAY
 		    GOTO LOOP
 		    
 CUATRO:						  
 		    MOVLW 01100110B		    ;salida 4 en display
 		    MOVWF PORTD
+		    CALL DELAY
 		    GOTO LOOP
 
 CINCO:						  
 		    MOVLW 01101101B		    ;salida 5 en display
 		    MOVWF PORTD
+		    CALL DELAY
 		    GOTO LOOP
 		    
 SEIS:						  
 		    MOVLW 01111101B		    ;salida 6 en display
 		    MOVWF PORTD
+		    CALL DELAY
 		    GOTO LOOP
 		    
 SIETE:						  
 		    MOVLW 00000111B		    ;salida 7 en display
 		    MOVWF PORTD
+		    CALL DELAY
 		    GOTO LOOP
 OCHO:						  
 		    MOVLW 01111111B		    ;salida 8 en display
 		    MOVWF PORTD
+		    CALL DELAY
 		    GOTO LOOP
 NUEVE:						  
 		    MOVLW 01101111B		    ;salida 9 en display
 		    MOVWF PORTD
+		    CALL DELAY
 		    GOTO LOOP
-		    
-DIEZ:						  
-		    MOVLW 01110111B		    ;salida A en display
-		    MOVWF PORTD
-		    GOTO LOOP
-		    
-ONCE:						  
-		    MOVLW 01111100B		    ;salida B en display
-		    MOVWF PORTD
-		    GOTO LOOP
-		    
-DOCE:						  
-		    MOVLW 00111001B		    ;salida C en display
-		    MOVWF PORTD
-		    GOTO LOOP		    
-		    
-TRECE:						  
-		    MOVLW 01011110B		    ;salida D en display
-		    MOVWF PORTD
-		    GOTO LOOP
-		    
-CATORCE:						  
-		    MOVLW 01111001B		    ;salida E en display
-		    MOVWF PORTD
-		    GOTO LOOP	
-		    
-QUINCE:						  
-		    MOVLW 01110001B		    ;salida F en display
-		    MOVWF PORTD
-		    GOTO LOOP
+
 		    
 		    
 DEFAULT:	
@@ -292,9 +213,15 @@ DEFAULT:
 		    MOVWF PORTD
 		    GOTO LOOP
 		    
-   
-    			
-END                       	;fin del programa
+DELAY:		
+    		MOVLW 10
+		MOVWF TEMP
+		DECFSZ TEMP
+		GOTO $-1
+		DECF	RESULT, 1		  ;decrementar en 1 el contador
+		RETURN
+		
+END                       	
 
 
 
