@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$build/default/production/Main.o
+$build/default/debug/Main.o
 udata RAM 1 60 60 4 1
 code CODE 0 7F10 7F10 F0 1
 config CONFIG 4 300000 300000 E 1
@@ -52,7 +52,7 @@ MEDIUMCONST 800-7F0F 1
 # are in ascending order of addresses.
 # All other numeric values are in decimal.
 %LINETAB
-$build/default/production/Main.o
+$build/default/debug/Main.o
 7F10 code CODE >84:C:\Users\Microcontroladores\Practica2.X\Main.s
 7F10 code CODE >85:C:\Users\Microcontroladores\Practica2.X\Main.s
 7F14 code CODE >89:C:\Users\Microcontroladores\Practica2.X\Main.s
@@ -173,7 +173,7 @@ __Hudata_bank4 0 0 ABS 0 udata_bank4 -
 __Hudata_bank5 0 0 ABS 0 udata_bank5 -
 __Hudata_bank6 0 0 ABS 0 udata_bank6 -
 __Hudata_bank7 0 0 ABS 0 udata_bank7 -
-isa$xinst 0 0 ABS 0 - build/default/production/Main.o
+isa$xinst 0 0 ABS 0 - build/default/debug/Main.o
 __Hedata 0 0 ABS 0 edata -
 __Hudata 0 0 ABS 0 udata -
 __Hconfig 30000E 0 CONFIG 4 config -
@@ -187,7 +187,7 @@ __S0 8000 0 ABS 0 - -
 __S1 64 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 __Lconfig 0 0 CONFIG 4 config -
-isa$std 1 0 ABS 0 - build/default/production/Main.o
+isa$std 1 0 ABS 0 - build/default/debug/Main.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -

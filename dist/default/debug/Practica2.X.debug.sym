@@ -43,7 +43,7 @@ __Ludata_bank3 0 0 ABS 0
 udata 60 63 RAM 60 1
 code 7F10 7FFF CODE 7F10 0
 %locals
-build/default/production/Main.o
+build/default/debug/Main.o
 C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\proc\\pic18f4550.inc
 Main.s
 84 7F10 0 CODE 0

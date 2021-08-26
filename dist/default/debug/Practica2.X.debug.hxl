@@ -7,7 +7,7 @@
   300007h - 300007h
   30000Eh - 30003Fh
   
- dist/default/production\Practica2.X.production.hex ranges:
+ dist/default/debug\Practica2.X.debug.hex ranges:
   7F10h - 7FFFh
   300000h - 300003h
   300005h - 300006h
@@ -24,7 +24,7 @@
   T = Trailing code
   & = Find & replace opcode
   X = Find & delete opcode
-  1 = dist/default/production\Practica2.X.production.hex
+  1 = dist/default/debug\Practica2.X.debug.hex
 00000000: ----------------------------------------------------------------
 00007F00: ----------------111111111111111111111111111111111111111111111111
 00007F40: 1111111111111111111111111111111111111111111111111111111111111111

@@ -62,6 +62,7 @@
 ; CONFIG7H
   CONFIG  EBTRB = OFF           ; Boot Block Table Read Protection bit (Boot block (000000-0007FFh) is not protected from table reads executed in other blocks)
 
+
 ;****************Definicion de variables********************************
 PSECT udata
 INPUT:
@@ -72,37 +73,39 @@ CONTADOR1:
 	DS 1
 RESULT:
 	DS 1
-
+	
 ;
+;PSECT text,class = CODE
+
 
 ;****************Programa principal **************************************************
 	PSECT   code;barfunc,local,class=CODE,delta=2 ; PIC10/12/16
 	
 			ORG     0x000             	;reset vector
   			GOTO    MAIN              	;go to the main routine
-
+ 
 INICIALIZACION:
 		    
 			MOVLW 0x0F			;todas entradas digitales
-			MOVWF ADCON1,c
-			 			MOVLW	0x09			;inicializar contador en 9
-			MOVWF   RESULT
-			
+			MOVWF ADCON1,c			
 			SETF	LATB,c			;PORTB como entrada
 			CLRF	LATD,c			;PORTD como salida
 			CLRF	LATA,c			;PORTE como salida
 			SETF	TRISB,c			;PORTB como entrada
 			CLRF	TRISD,c			;PORTD como salida
 			CLRF	TRISA,c			;PORTE como salida
-
-			RETURN			
+			RETURN	
+INICIO:
+			MOVLW 0x09
+			MOVWF RESULT
+			RETURN
 
 MAIN:
 		CALL 	INICIALIZACION
-
-LOOP:
+		CALL	INICIO
 
 			
+LOOP2:
 			MOVLW	0x00		    ;mover 0 al acumulador
 			SUBWF	RESULT,	0,1	    ;restar 0 a la entrada
 			BZ	CERO		    ;caso 0 
@@ -152,66 +155,66 @@ CERO:
 		    MOVLW 00111111B
 		    MOVWF PORTD
 		    CALL DELAY
-		    GOTO LOOP
+		    GOTO LOOP2
 		    
 UNO:
 		    MOVLW 00000110B		    ;salida 1 en display
 		    MOVWF PORTD
 		    CALL DELAY
-		    GOTO LOOP	    
+		    GOTO LOOP2	    
 		    
 DOS:
 		    MOVLW 01011011B		    ;salida 2 en display
 		    MOVWF PORTD
 		    CALL DELAY
-		    GOTO LOOP	    
+		    GOTO LOOP2    
 		    
 TRES:
 		    MOVLW 01001111B		   ;salida 3 en display
 		    MOVWF PORTD
 		    CALL DELAY
-		    GOTO LOOP
+		    GOTO LOOP2
 		    
 CUATRO:						  
 		    MOVLW 01100110B		    ;salida 4 en display
 		    MOVWF PORTD
 		    CALL DELAY
-		    GOTO LOOP
+		    GOTO LOOP2
 
 CINCO:						  
 		    MOVLW 01101101B		    ;salida 5 en display
 		    MOVWF PORTD
 		    CALL DELAY
-		    GOTO LOOP
+		    GOTO LOOP2
 		    
 SEIS:						  
 		    MOVLW 01111101B		    ;salida 6 en display
 		    MOVWF PORTD
 		    CALL DELAY
-		    GOTO LOOP
+		    GOTO LOOP2
 		    
 SIETE:						  
 		    MOVLW 00000111B		    ;salida 7 en display
 		    MOVWF PORTD
 		    CALL DELAY
-		    GOTO LOOP
+		    GOTO LOOP2
 OCHO:						  
 		    MOVLW 01111111B		    ;salida 8 en display
 		    MOVWF PORTD
 		    CALL DELAY
-		    GOTO LOOP
+		    GOTO LOOP2
 NUEVE:						  
 		    MOVLW 01101111B		    ;salida 9 en display
 		    MOVWF PORTD
 		    CALL DELAY
-		    GOTO LOOP
+		    GOTO LOOP2
 
 		    
 		    
 DEFAULT:	
 		    MOVLW 00110111B		    ;salida N en display
 		    MOVWF PORTD
-		    GOTO LOOP
+		    GOTO LOOP2
 		    
 DELAY:		
     		MOVLW 10
