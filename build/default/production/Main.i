@@ -5442,12 +5442,13 @@ ENDM
 # 2 "Main.s" 2
 
 ; CONFIG1L
-  CONFIG PLLDIV = 5 ; PLL Prescaler Selection bits (Divide by 5 (20 MHz oscillator input))
+  CONFIG PLLDIV = 10 ; PLL Prescaler Selection bits (Divide by 10 (40 MHz oscillator input))
   CONFIG CPUDIV = OSC3_PLL4 ; System Clock Postscaler Selection bits ([Primary Oscillator Src: /3][96 MHz PLL Src: /4])
   CONFIG USBDIV = 2 ; USB Clock Selection bit (used in Full-Speed USB mode only; UCFG:((UCFG) and 0FFh), 2, a = 1) (USB clock source comes from the 96 MHz PLL divided by 2)
 
+
 ; CONFIG1H
-  CONFIG FOSC = HSPLL_HS ; Oscillator Selection bits (HS oscillator, PLL enabled (HSPLL))
+  CONFIG FOSC = INTOSCIO_EC ; Oscillator Selection bits (Internal oscillator, port function on ((PORTA) and 0FFh), 6, a, EC used by USB (INTIO))
   CONFIG FCMEN = OFF ; Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor disabled)
   CONFIG IESO = OFF ; Internal/External Oscillator Switchover bit (Oscillator Switchover mode disabled)
 
@@ -5510,6 +5511,14 @@ INPUT:
  DS 1
 TEMP:
  DS 1
+V1:
+ DS 1
+V2:
+ DS 1
+V3:
+ DS 1
+V4:
+ DS 1
 CONTADOR1:
  DS 1
 RESULT:
@@ -5522,7 +5531,7 @@ RESULT:
 ;****************Programa principal **************************************************
  PSECT code;barfunc,local,class=CODE,delta=2 ; PIC10/12/16
 
-   ORG 0x000 ;reset vector
+   ORG 0x00 ;reset vector
      GOTO MAIN ;go to the main routine
 
 INICIALIZACION:
@@ -5535,15 +5544,12 @@ INICIALIZACION:
    SETF TRISB,c ;PORTB como entrada
    CLRF TRISD,c ;PORTD como salida
    CLRF TRISA,c ;PORTE como salida
-   RETURN
-INICIO:
    MOVLW 0x09
    MOVWF RESULT
    RETURN
 
 MAIN:
   CALL INICIALIZACION
-  CALL INICIO
 
 
 LOOP2:
@@ -5595,59 +5601,70 @@ CERO:
           ;salida 0 en display
       MOVLW 00111111B
       MOVWF PORTD
-      CALL DELAY
+      CALL DELAY_1DS
+      MOVLW 0x09 ;reseteo a 9
+      MOVWF RESULT
       GOTO LOOP2
 
 UNO:
       MOVLW 00000110B ;salida 1 en display
       MOVWF PORTD
-      CALL DELAY
+      CALL DELAY_1DS
+      DECF RESULT, 1
       GOTO LOOP2
 
 DOS:
       MOVLW 01011011B ;salida 2 en display
       MOVWF PORTD
-      CALL DELAY
+      CALL DELAY_1DS
+      DECF RESULT, 1
       GOTO LOOP2
 
 TRES:
       MOVLW 01001111B ;salida 3 en display
       MOVWF PORTD
-      CALL DELAY
+      CALL DELAY_1DS
+      DECF RESULT, 1
       GOTO LOOP2
 
 CUATRO:
       MOVLW 01100110B ;salida 4 en display
       MOVWF PORTD
-      CALL DELAY
+      CALL DELAY_1DS
+      DECF RESULT, 1
       GOTO LOOP2
 
 CINCO:
       MOVLW 01101101B ;salida 5 en display
       MOVWF PORTD
-      CALL DELAY
+      CALL DELAY_1DS
+      DECF RESULT, 1
       GOTO LOOP2
 
 SEIS:
       MOVLW 01111101B ;salida 6 en display
       MOVWF PORTD
-      CALL DELAY
+      CALL DELAY_1DS
+      DECF RESULT, 1
       GOTO LOOP2
 
 SIETE:
       MOVLW 00000111B ;salida 7 en display
       MOVWF PORTD
-      CALL DELAY
+      CALL DELAY_1DS
+      DECF RESULT, 1
       GOTO LOOP2
 OCHO:
       MOVLW 01111111B ;salida 8 en display
       MOVWF PORTD
-      CALL DELAY
+      CALL DELAY_1DS
+      DECF RESULT, 1 ;decrementar en 1 el contador
       GOTO LOOP2
 NUEVE:
       MOVLW 01101111B ;salida 9 en display
       MOVWF PORTD
-      CALL DELAY
+      CALL DELAY_1DS
+      DECF RESULT, 1 ;decrementar en 1 el contador
       GOTO LOOP2
 
 
@@ -5655,14 +5672,19 @@ NUEVE:
 DEFAULT:
       MOVLW 00110111B ;salida N en display
       MOVWF PORTD
-      GOTO LOOP2
+      CALL DELAY_1DS
 
-DELAY:
-      MOVLW 10
-  MOVWF TEMP
-  DECFSZ TEMP
-  GOTO $-1
-  DECF RESULT, 1 ;decrementar en 1 el contador
-  RETURN
+DELAY_1DS:
+      MOVLW 255
+      MOVWF TEMP
+      MOVLW 25
+      MOVWF V1
+      NOP
+      DECFSZ TEMP
+      GOTO $-1
+      DECFSZ V1
+      GOTO $-10
+      RETURN
+
 
 END
