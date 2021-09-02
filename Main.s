@@ -213,13 +213,57 @@ DEFAULT:
 		    MOVWF PORTD
 		    GOTO LOOP
 		    
-DELAY:		
-    		MOVLW 10
-		MOVWF TEMP
-		DECFSZ TEMP
-		GOTO $-1
-		DECF	RESULT, 1		  ;decrementar en 1 el contador
-		RETURN
+
+DELAY_1DS:	    
+		    MOVLW 255
+		    MOVWF TEMP
+		    MOVLW 25
+		    MOVWF V1
+		    NOP
+		    DECFSZ TEMP
+		    GOTO $-1
+		    DECFSZ V1
+		    GOTO $-10
+		    RETURN
+
+DELAY_5DS:		   
+		  
+		    MOVLW 5
+		    MOVWF V2
+		    NOP
+		    CALL DELAY_1DS
+		    DECFSZ V2
+		    GOTO $-6
+		    RETURN
+DELAY_1S:		   
+		  
+		    MOVLW 10
+		    MOVWF V3
+		    NOP
+		    CALL DELAY_1DS
+		    DECFSZ V3
+		    GOTO $-6
+		    RETURN
+DELAY_5S:		   
+		  
+		    MOVLW 5
+		    MOVWF V4
+		    NOP
+		    CALL DELAY_1S
+		    DECFSZ V4
+		    GOTO $-6
+		    RETURN
+		
+DELAY_10S:		   
+		  
+		    MOVLW 10
+		    MOVWF V5
+		    NOP
+		    CALL DELAY_1S
+		    DECFSZ V5
+		    GOTO $-6
+		    RETURN
+
 		
 END                       	
 
