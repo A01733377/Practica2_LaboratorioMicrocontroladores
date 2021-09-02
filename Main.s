@@ -65,7 +65,6 @@
 
 
 ;****************Definicion de variables********************************
-PSECT udata
 INPUT:
 	DS 1
 TEMP:
@@ -78,11 +77,14 @@ V3:
 	DS 1
 V4:
 	DS 1
+V5:
+	DS 1
+AUX:
+	DS 1
 CONTADOR1:
 	DS 1
 RESULT:
 	DS 1
-	
 ;
 ;PSECT text,class = CODE
 
@@ -232,6 +234,61 @@ DEFAULT:
 		    MOVLW 00110111B		    ;salida N en display
 		    MOVWF PORTD
 		    CALL DELAY_1DS
+DELAY:		
+	
+		      BTFSC PORTB,0
+		      CALL  INCRE
+		      BTFSC PORTB,1
+		      CALL  DECRE
+		      GOTO DECISION
+		      
+		      
+		INCRE:
+		       CALL   DELAY_1DS
+		       BTFSC   PORTB,0  
+		       GOTO   INCRE
+		       MOVLW  0x04
+		       CPFSEQ CONTADOR1		    ;bandera de alto si ya es igual al limite
+		       INCF   CONTADOR1, F
+		       RETURN
+		
+		    DECRE:
+		       CALL   DELAY_1DS
+		       BTFSC   PORTB,1 
+		       GOTO   DECRE
+		       MOVLW  0x00
+		       CPFSEQ CONTADOR1
+		       DECF   CONTADOR1, F
+		       RETURN
+		       
+
+			DECISION:
+    
+			MOVF	CONTADOR1, W		    ;mover 0 al acumulador 0x03
+			MOVWF   PORTA			    
+			
+		        MOVLW	0x00		    ;mover 0 al acumulador
+			SUBWF	CONTADOR1,	0,1	    ;restar 0 a la entrada
+			BZ	DELAY_1DS		    ;caso 0 
+			
+			MOVLW	0x01		    ;mover 1 al acumulador
+			SUBWF	CONTADOR1,	0,1	    ;restar 1 a la entrada
+			BZ	DELAY_5DS		    ;caso 1 
+			
+			MOVLW	0x02		    ;mover 2 al acumulador
+			SUBWF	CONTADOR1,	W	    ;restar 2 a la entrada
+			BZ	DELAY_1S		    ;caso 2 
+			
+			MOVLW	0x03		    ;mover 3 al acumulador
+			SUBWF	CONTADOR1,	W	    ;restar 3 a la entrada
+			BZ	DELAY_5S		    ;caso 3 
+			
+			MOVLW	0x04		    ;mover 4 al acumulador
+			SUBWF	CONTADOR1,	W	    ;restar 4 a la entrada
+			BZ	DELAY_10S		    ;caso 4 
+			
+			
+	RETURN
 		    
 DELAY_1DS:		   
 		    MOVLW 255
