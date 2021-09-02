@@ -64,22 +64,38 @@
 
 ;****************Definicion de variables********************************
 PSECT udata
+
+	
 INPUT:
 	DS 1
 TEMP:
+	DS 1
+V1:
+	DS 1
+V2:
+	DS 1
+V3:
+	DS 1
+V4:
+	DS 1
+V5:
+	DS 1
+AUX:
 	DS 1
 CONTADOR1:
 	DS 1
 RESULT:
 	DS 1
 
+
 ;
 
 ;****************Programa principal **************************************************
-	PSECT   code;barfunc,local,class=CODE,delta=2 ; PIC10/12/16
+	PSECT   code;barfunc,local,class=CODE,delta=2 ; 
 	
 			ORG     0x000             	;reset vector
   			GOTO    MAIN              	;go to the main routine
+			
 
 INICIALIZACION:
 		    
