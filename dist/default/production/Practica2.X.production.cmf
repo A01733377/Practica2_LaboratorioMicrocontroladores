@@ -12,8 +12,8 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $build/default/production/Main.o
-udata RAM 1 60 60 8 1
-code CODE 0 7EF6 7EF6 10A 1
+udata RAM 1 60 60 A 1
+code CODE 0 7E54 7E54 1AC 1
 config CONFIG 4 300000 300000 E 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -21,9 +21,9 @@ config CONFIG 4 300000 300000 E 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 68-7FF 1
+RAM 6A-7FF 1
 SFR F60-FFF 1
-BANK0 68-FF 1
+BANK0 6A-FF 1
 BANK1 100-1FF 1
 BANK2 200-2FF 1
 BANK3 300-3FF 1
@@ -31,14 +31,14 @@ BANK4 400-4FF 1
 BANK5 500-5FF 1
 BANK6 600-6FF 1
 BANK7 700-7FF 1
-CONST 0-7EF5 1
+CONST 0-7E53 1
 IDLOC 200000-200007 1
-SMALLCONST 800-7EF5 1
-CODE 0-7EF5 1
+SMALLCONST 800-7E53 1
+CODE 0-7E53 1
 BIGRAM 0-7FF 1
 COMRAM 0-5F 1
 EEDATA F00000-F000FF 1
-MEDIUMCONST 800-7EF5 1
+MEDIUMCONST 800-7E53 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -53,115 +53,182 @@ MEDIUMCONST 800-7EF5 1
 # All other numeric values are in decimal.
 %LINETAB
 $build/default/production/Main.o
-7EF6 code CODE >93:C:\Users\Microcontroladores\Practica2.X\Main.s
-7EF6 code CODE >94:C:\Users\Microcontroladores\Practica2.X\Main.s
-7EFA code CODE >98:C:\Users\Microcontroladores\Practica2.X\Main.s
-7EFC code CODE >99:C:\Users\Microcontroladores\Practica2.X\Main.s
-7EFE code CODE >100:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F00 code CODE >101:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F02 code CODE >102:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F04 code CODE >103:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F06 code CODE >104:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F08 code CODE >105:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F0A code CODE >106:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F0C code CODE >107:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F0E code CODE >108:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F10 code CODE >111:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F14 code CODE >115:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F16 code CODE >116:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F18 code CODE >117:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F1A code CODE >119:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F1C code CODE >120:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F1E code CODE >121:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F20 code CODE >123:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F22 code CODE >124:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F24 code CODE >125:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F26 code CODE >127:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F28 code CODE >128:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F2A code CODE >129:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F2C code CODE >131:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F2E code CODE >132:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F30 code CODE >133:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F32 code CODE >135:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F34 code CODE >136:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F36 code CODE >137:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F38 code CODE >139:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F3A code CODE >140:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F3C code CODE >141:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F3E code CODE >143:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F40 code CODE >144:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F42 code CODE >145:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F44 code CODE >147:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F46 code CODE >148:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F48 code CODE >149:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F4A code CODE >151:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F4C code CODE >152:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F4E code CODE >153:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F50 code CODE >156:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F52 code CODE >161:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F54 code CODE >162:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F56 code CODE >163:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F5A code CODE >164:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F5C code CODE >165:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F5E code CODE >166:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F62 code CODE >169:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F64 code CODE >170:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F66 code CODE >171:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F6A code CODE >172:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F6C code CODE >173:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F70 code CODE >176:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F72 code CODE >177:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F74 code CODE >178:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F78 code CODE >179:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F7A code CODE >180:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F7E code CODE >183:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F80 code CODE >184:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F82 code CODE >185:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F86 code CODE >186:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F88 code CODE >187:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F8C code CODE >190:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F8E code CODE >191:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F90 code CODE >192:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F94 code CODE >193:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F96 code CODE >194:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F9A code CODE >197:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F9C code CODE >198:C:\Users\Microcontroladores\Practica2.X\Main.s
-7F9E code CODE >199:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FA2 code CODE >200:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FA4 code CODE >201:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FA8 code CODE >204:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FAA code CODE >205:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FAC code CODE >206:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FB0 code CODE >207:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FB2 code CODE >208:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FB6 code CODE >211:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FB8 code CODE >212:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FBA code CODE >213:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FBE code CODE >214:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FC0 code CODE >215:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FC4 code CODE >217:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FC6 code CODE >218:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FC8 code CODE >219:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FCC code CODE >220:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FCE code CODE >221:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FD2 code CODE >223:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FD4 code CODE >224:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FD6 code CODE >225:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FDA code CODE >226:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FDC code CODE >227:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FE0 code CODE >232:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FE2 code CODE >233:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FE4 code CODE >234:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FE8 code CODE >237:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FEA code CODE >238:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FEC code CODE >239:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FEE code CODE >240:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FF0 code CODE >241:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FF2 code CODE >242:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FF4 code CODE >243:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FF8 code CODE >244:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FFA code CODE >245:C:\Users\Microcontroladores\Practica2.X\Main.s
-7FFE code CODE >246:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E54 code CODE >97:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E54 code CODE >98:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E58 code CODE >102:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E5A code CODE >103:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E5C code CODE >104:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E5E code CODE >105:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E60 code CODE >106:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E62 code CODE >107:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E64 code CODE >108:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E66 code CODE >109:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E68 code CODE >110:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E6A code CODE >112:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E6C code CODE >113:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E6E code CODE >114:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E70 code CODE >115:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E72 code CODE >116:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E74 code CODE >119:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E78 code CODE >126:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E7A code CODE >127:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E7C code CODE >128:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E7E code CODE >130:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E80 code CODE >131:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E82 code CODE >132:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E84 code CODE >134:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E86 code CODE >135:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E88 code CODE >136:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E8A code CODE >138:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E8C code CODE >139:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E8E code CODE >140:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E90 code CODE >142:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E92 code CODE >143:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E94 code CODE >144:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E96 code CODE >146:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E98 code CODE >147:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E9A code CODE >148:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E9C code CODE >150:C:\Users\Microcontroladores\Practica2.X\Main.s
+7E9E code CODE >151:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EA0 code CODE >152:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EA2 code CODE >154:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EA4 code CODE >155:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EA6 code CODE >156:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EA8 code CODE >158:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EAA code CODE >159:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EAC code CODE >160:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EAE code CODE >162:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EB0 code CODE >163:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EB2 code CODE >164:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EB4 code CODE >167:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EB6 code CODE >172:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EB8 code CODE >173:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EBA code CODE >174:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EBE code CODE >175:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EC0 code CODE >176:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EC2 code CODE >177:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EC6 code CODE >180:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EC8 code CODE >181:C:\Users\Microcontroladores\Practica2.X\Main.s
+7ECA code CODE >182:C:\Users\Microcontroladores\Practica2.X\Main.s
+7ECE code CODE >183:C:\Users\Microcontroladores\Practica2.X\Main.s
+7ED0 code CODE >184:C:\Users\Microcontroladores\Practica2.X\Main.s
+7ED4 code CODE >187:C:\Users\Microcontroladores\Practica2.X\Main.s
+7ED6 code CODE >188:C:\Users\Microcontroladores\Practica2.X\Main.s
+7ED8 code CODE >189:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EDC code CODE >190:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EDE code CODE >191:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EE2 code CODE >194:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EE4 code CODE >195:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EE6 code CODE >196:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EEA code CODE >197:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EEC code CODE >198:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EF0 code CODE >201:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EF2 code CODE >202:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EF4 code CODE >203:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EF8 code CODE >204:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EFA code CODE >205:C:\Users\Microcontroladores\Practica2.X\Main.s
+7EFE code CODE >208:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F00 code CODE >209:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F02 code CODE >210:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F06 code CODE >211:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F08 code CODE >212:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F0C code CODE >215:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F0E code CODE >216:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F10 code CODE >217:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F14 code CODE >218:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F16 code CODE >219:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F1A code CODE >222:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F1C code CODE >223:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F1E code CODE >224:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F22 code CODE >225:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F24 code CODE >226:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F28 code CODE >228:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F2A code CODE >229:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F2C code CODE >230:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F30 code CODE >231:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F32 code CODE >232:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F36 code CODE >234:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F38 code CODE >235:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F3A code CODE >236:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F3E code CODE >237:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F40 code CODE >238:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F44 code CODE >243:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F46 code CODE >244:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F48 code CODE >245:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F4C code CODE >262:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F4E code CODE >263:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F52 code CODE >264:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F54 code CODE >265:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F58 code CODE >269:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F5A code CODE >270:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F5C code CODE >272:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F5E code CODE >273:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F60 code CODE >274:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F62 code CODE >276:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F64 code CODE >277:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F66 code CODE >278:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F68 code CODE >280:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F6A code CODE >281:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F6C code CODE >282:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F6E code CODE >284:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F70 code CODE >285:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F72 code CODE >286:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F74 code CODE >288:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F76 code CODE >289:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F78 code CODE >290:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F7A code CODE >293:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F7C code CODE >295:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F7E code CODE >296:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F80 code CODE >297:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F82 code CODE >298:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F84 code CODE >299:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F86 code CODE >300:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F88 code CODE >301:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F8C code CODE >302:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F8E code CODE >303:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F92 code CODE >304:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F94 code CODE >308:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F96 code CODE >309:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F98 code CODE >310:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F9A code CODE >311:C:\Users\Microcontroladores\Practica2.X\Main.s
+7F9E code CODE >312:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FA0 code CODE >313:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FA4 code CODE >314:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FA6 code CODE >317:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FA8 code CODE >318:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FAA code CODE >319:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FAC code CODE >320:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FB0 code CODE >321:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FB2 code CODE >322:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FB6 code CODE >323:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FB8 code CODE >326:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FBA code CODE >327:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FBC code CODE >328:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FBE code CODE >329:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FC2 code CODE >330:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FC4 code CODE >331:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FC8 code CODE >332:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FCA code CODE >336:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FCC code CODE >337:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FCE code CODE >338:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FD0 code CODE >339:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FD4 code CODE >340:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FD6 code CODE >341:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FDA code CODE >342:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FDC code CODE >346:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FE0 code CODE >347:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FE2 code CODE >348:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FE6 code CODE >349:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FE8 code CODE >350:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FEA code CODE >351:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FEC code CODE >352:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FEE code CODE >355:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FF2 code CODE >356:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FF4 code CODE >357:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FF8 code CODE >358:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FFA code CODE >359:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FFC code CODE >360:C:\Users\Microcontroladores\Practica2.X\Main.s
+7FFE code CODE >361:C:\Users\Microcontroladores\Practica2.X\Main.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -175,7 +242,7 @@ $build/default/production/Main.o
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 __Hspace_0 8000 0 ABS 0 - -
-__Hspace_1 68 0 ABS 0 - -
+__Hspace_1 6A 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 60000E 0 ABS 0 - -
 __Hudata_bank0 0 0 ABS 0 udata_bank0 -
@@ -197,7 +264,7 @@ __Hdata 0 0 ABS 0 data -
 __Lcode 0 0 ABS 0 code -
 __Ldata 0 0 ABS 0 data -
 __S0 8000 0 ABS 0 - -
-__S1 68 0 ABS 0 - -
+__S1 6A 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 __Lconfig 0 0 CONFIG 4 config -
 isa$std 1 0 ABS 0 - build/default/production/Main.o
@@ -239,8 +306,8 @@ __Ludata_acs 0 0 ABS 0 udata_acs -
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-udata 1 60 60 8 1
-code 0 7EF6 7EF6 10A 1
+udata 1 60 60 A 1
+code 0 7E54 7E54 1AC 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

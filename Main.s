@@ -78,6 +78,10 @@ V3:
 	DS 1
 V4:
 	DS 1
+V5:
+	DS 1
+AUX:
+	DS 1
 CONTADOR1:
 	DS 1
 RESULT:
@@ -99,10 +103,14 @@ INICIALIZACION:
 			MOVWF ADCON1,c			
 			SETF	LATB,c			;PORTB como entrada
 			CLRF	LATD,c			;PORTD como salida
-			CLRF	LATA,c			;PORTE como salida
+			CLRF	LATA,c			;PORTA como salida
 			SETF	TRISB,c			;PORTB como entrada
 			CLRF	TRISD,c			;PORTD como salida
-			CLRF	TRISA,c			;PORTE como salida
+			CLRF	TRISA,c			;PORTA como salida
+			CLRF    PORTB
+
+			MOVLW 0x00
+			MOVWF CONTADOR1
 			MOVLW 0x09
 			MOVWF RESULT
 			RETURN
@@ -112,6 +120,9 @@ MAIN:
 
 			
 LOOP2:
+			
+
+		    
 			MOVLW	0x00		    ;mover 0 al acumulador
 			SUBWF	RESULT,	0,1	    ;restar 0 a la entrada
 			BZ	CERO		    ;caso 0 
@@ -160,7 +171,7 @@ CERO:
 						    ;salida 0 en display
 		    MOVLW 00111111B
 		    MOVWF PORTD
-		    CALL DELAY_1DS
+		    CALL DELAY
 		    MOVLW 0x09			;reseteo a 9
 		    MOVWF RESULT
 		    GOTO LOOP2
@@ -168,61 +179,61 @@ CERO:
 UNO:
 		    MOVLW 00000110B		    ;salida 1 en display
 		    MOVWF PORTD
-		    CALL DELAY_1DS
+		    CALL DELAY
 		    DECF	RESULT, 1
 		    GOTO LOOP2	    
 		    
 DOS:
 		    MOVLW 01011011B		    ;salida 2 en display
 		    MOVWF PORTD
-		    CALL DELAY_1DS
+		    CALL DELAY
 		    DECF	RESULT, 1
 		    GOTO LOOP2    
 		    
 TRES:
 		    MOVLW 01001111B		   ;salida 3 en display
 		    MOVWF PORTD
-		    CALL DELAY_1DS
+		    CALL DELAY
 		    DECF	RESULT, 1
 		    GOTO LOOP2
 		    
 CUATRO:						  
 		    MOVLW 01100110B		    ;salida 4 en display
 		    MOVWF PORTD
-		    CALL DELAY_1DS
+		    CALL DELAY
 		    DECF	RESULT, 1
 		    GOTO LOOP2
 
 CINCO:						  
 		    MOVLW 01101101B		    ;salida 5 en display
 		    MOVWF PORTD
-		    CALL DELAY_1DS
+		    CALL DELAY
 		    DECF	RESULT, 1
 		    GOTO LOOP2
 		    
 SEIS:						  
 		    MOVLW 01111101B		    ;salida 6 en display
 		    MOVWF PORTD
-		    CALL DELAY_1DS
+		    CALL DELAY
 		    DECF	RESULT, 1
 		    GOTO LOOP2
 		    
 SIETE:						  
 		    MOVLW 00000111B		    ;salida 7 en display
 		    MOVWF PORTD
-		    CALL DELAY_1DS
+		    CALL DELAY
 		    DECF	RESULT, 1
 		    GOTO LOOP2
 OCHO:						  
 		    MOVLW 01111111B		    ;salida 8 en display
 		    MOVWF PORTD
-		    CALL DELAY_1DS
+		    CALL DELAY
 		    DECF	RESULT, 1		  ;decrementar en 1 el contador
 		    GOTO LOOP2
 NUEVE:						  
 		    MOVLW 01101111B		    ;salida 9 en display
 		    MOVWF PORTD
-		    CALL DELAY_1DS
+		    CALL DELAY
 		    DECF	RESULT, 1		  ;decrementar en 1 el contador
 		    GOTO LOOP2
 
@@ -231,9 +242,56 @@ NUEVE:
 DEFAULT:	
 		    MOVLW 00110111B		    ;salida N en display
 		    MOVWF PORTD
-		    CALL DELAY_1DS
+		    CALL DELAY_10S
+
+		      
+DELAY:		
+	
+		;      BTFSC PORTB,0
+		 ;     CALL  INCRE
+		 ;     BTFSC PORTB,1
+		 ;     CALL  DECRE
+		  ;    GOTO DECISION
+		      
+		      
+		
+		       
+
+			DECISION:
+    
+		   BTFSC PORTB,0
+		     CALL  INCRE
+		     BTFSC PORTB,1
+		    CALL  DECRE
+
 		    
-DELAY_1DS:		   
+		    
+			MOVF	CONTADOR1, W		    ;mover 0 al acumulador 0x03
+			MOVWF   PORTA			    
+			
+		        MOVLW	0x00		    ;mover 0 al acumulador
+			SUBWF	CONTADOR1,	0,1	    ;restar 0 a la entrada
+			BZ	DELAY_1DS		    ;caso 0 
+			
+			MOVLW	0x01		    ;mover 1 al acumulador
+			SUBWF	CONTADOR1,	0,1	    ;restar 1 a la entrada
+			BZ	DELAY_5DS		    ;caso 1 
+			
+			MOVLW	0x02		    ;mover 2 al acumulador
+			SUBWF	CONTADOR1,	W	    ;restar 2 a la entrada
+			BZ	DELAY_1S		    ;caso 2 
+			
+			MOVLW	0x03		    ;mover 3 al acumulador
+			SUBWF	CONTADOR1,	W	    ;restar 3 a la entrada
+			BZ	DELAY_5S		    ;caso 3 
+			
+			MOVLW	0x04		    ;mover 4 al acumulador
+			SUBWF	CONTADOR1,	W	    ;restar 4 a la entrada
+			BZ	DELAY_10S		    ;caso 4 
+			
+			
+	RETURN
+DELAY_1DS:	    
 		    MOVLW 255
 		    MOVWF TEMP
 		    MOVLW 25
@@ -244,8 +302,64 @@ DELAY_1DS:
 		    DECFSZ V1
 		    GOTO $-10
 		    RETURN
-	
+
+DELAY_5DS:		   
+		  
+		    MOVLW 5
+		    MOVWF V2
+		    NOP
+		    CALL DELAY_1DS
+		    DECFSZ V2
+		    GOTO $-6
+		    RETURN
+DELAY_1S:		   
+		  
+		    MOVLW 10
+		    MOVWF V3
+		    NOP
+		    CALL DELAY_1DS
+		    DECFSZ V3
+		    GOTO $-6
+		    RETURN
+DELAY_5S:		   
+		  
+		    MOVLW 5
+		    MOVWF V4
+		    NOP
+		    CALL DELAY_1S
+		    DECFSZ V4
+		    GOTO $-6
+		    RETURN
 		
+DELAY_10S:		   
+		  
+		    MOVLW 10
+		    MOVWF V5
+		    NOP
+		    CALL DELAY_1S
+		    DECFSZ V5
+		    GOTO $-6
+		    RETURN
+		    
+ 		
+		    INCRE:
+		       CALL   DELAY_1DS
+		       BTFSC   PORTB,0  
+		       GOTO   INCRE
+		       MOVLW  0x04
+		       CPFSEQ CONTADOR1		    ;bandera de alto si ya es igual al limite
+		       INCF   CONTADOR1, F
+		       RETURN
+		
+		    DECRE:
+		       CALL   DELAY_1DS
+		       BTFSC   PORTB,1 
+		       GOTO   DECRE
+		       MOVLW  0x00
+		       CPFSEQ CONTADOR1
+		       DECF   CONTADOR1, F
+		       RETURN
+		    
 END                       	
 
 
