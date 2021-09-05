@@ -5442,13 +5442,12 @@ ENDM
 # 2 "Main.s" 2
 
 ; CONFIG1L
-  CONFIG PLLDIV = 10 ; PLL Prescaler Selection bits (Divide by 10 (40 MHz oscillator input))
+  CONFIG PLLDIV = 5 ; PLL Prescaler Selection bits (Divide by 6 (24 MHz oscillator input))
   CONFIG CPUDIV = OSC3_PLL4 ; System Clock Postscaler Selection bits ([Primary Oscillator Src: /3][96 MHz PLL Src: /4])
-  CONFIG USBDIV = 2 ; USB Clock Selection bit (used in Full-Speed USB mode only; UCFG:((UCFG) and 0FFh), 2, a = 1) (USB clock source comes from the 96 MHz PLL divided by 2)
-
+  CONFIG USBDIV = 2 ; USB Clock Selection bit (used in Full-Speed USB mode only; UCFG:((UCFG) and 0FFh), 2, a = 1) (USB clock source comes directly from the primary oscillator block with no postscale)
 
 ; CONFIG1H
-  CONFIG FOSC = INTOSCIO_EC ; Oscillator Selection bits (Internal oscillator, port function on ((PORTA) and 0FFh), 6, a, EC used by USB (INTIO))
+  CONFIG FOSC = HSPLL_HS ; Oscillator Selection bits (XT oscillator (XT))
   CONFIG FCMEN = OFF ; Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor disabled)
   CONFIG IESO = OFF ; Internal/External Oscillator Switchover bit (Oscillator Switchover mode disabled)
 
@@ -5523,6 +5522,10 @@ V5:
  DS 1
 AUX:
  DS 1
+AUX2:
+ DS 1
+AUX3:
+ DS 1
 CONTADOR1:
  DS 1
 RESULT:
@@ -5554,6 +5557,8 @@ INICIALIZACION:
    MOVWF CONTADOR1
    MOVLW 0x09
    MOVWF RESULT
+   MOVLW 0x00
+   MOVWF AUX3
    RETURN
 
 MAIN:
@@ -5561,8 +5566,6 @@ MAIN:
 
 
 LOOP2:
-
-
 
    MOVLW 0x00 ;mover 0 al acumulador
    SUBWF RESULT, 0,1 ;restar 0 a la entrada
@@ -5688,27 +5691,16 @@ DEFAULT:
 
 DELAY:
 
-  ; BTFSC PORTB,0
-   ; CALL INCRE
-   ; BTFSC PORTB,1
-   ; CALL DECRE
-    ; GOTO DECISION
-
-
-
-
 
    DECISION:
 
-     BTFSC PORTB,0
-       CALL INCRE
-       BTFSC PORTB,1
-      CALL DECRE
+   BTFSC PORTB,0
+   CALL INCRE
+   BTFSC PORTB,1
+   CALL DECRE
 
+   CALL LEDS
 
-
-   MOVF CONTADOR1, W ;mover 0 al acumulador 0x03
-   MOVWF PORTA
 
           MOVLW 0x00 ;mover 0 al acumulador
    SUBWF CONTADOR1, 0,1 ;restar 0 a la entrada
@@ -5735,13 +5727,17 @@ DELAY:
 DELAY_1DS:
       MOVLW 255
       MOVWF TEMP
-      MOVLW 25
+      MOVLW 140
       MOVWF V1
+      MOVLW 3
+      MOVWF AUX2
       NOP
       DECFSZ TEMP
-      GOTO $-1
+      GOTO $-2
       DECFSZ V1
       GOTO $-10
+      DECFSZ AUX2
+      GOTO $-16
       RETURN
 
 DELAY_5DS:
@@ -5800,5 +5796,70 @@ DELAY_10S:
          CPFSEQ CONTADOR1
          DECF CONTADOR1, F
          RETURN
+
+ LEDS:
+
+   MOVLW 0x01
+         CPFSEQ AUX3
+         GOTO APAGAR ;no igual
+
+         MOVLW 0x00
+   MOVWF AUX3
+
+   MOVLW 0x00 ;mover 0 al acumulador
+   SUBWF CONTADOR1, 0,1 ;restar 0 a la entrada
+   BZ LED0 ;caso 0
+
+   MOVLW 0x01 ;mover 1 al acumulador
+   SUBWF CONTADOR1, 0,1 ;restar 1 a la entrada
+   BZ LED1 ;caso 1
+
+   MOVLW 0x02 ;mover 2 al acumulador
+   SUBWF CONTADOR1, W ;restar 2 a la entrada
+   BZ LED2 ;caso 2
+
+   MOVLW 0x03 ;mover 3 al acumulador
+   SUBWF CONTADOR1, W ;restar 3 a la entrada
+   BZ LED3 ;caso 3
+
+   MOVLW 0x04 ;mover 4 al acumulador
+   SUBWF CONTADOR1, W ;restar 4 a la entrada
+   BZ LED4 ;caso 4
+
+   LED0:
+         MOVLW 00000001B
+         MOVWF PORTA
+         RETURN
+
+         LED1:
+         MOVLW 00000010B
+         MOVWF PORTA
+         RETURN
+
+
+         LED2:
+         MOVLW 00000100B
+         MOVWF PORTA
+         RETURN
+
+
+         LED3:
+         MOVLW 00001000B
+         MOVWF PORTA
+         RETURN
+
+
+         LED4:
+         MOVLW 00010000B
+         MOVWF PORTA
+         RETURN
+
+         APAGAR:
+         MOVLW 00000000B
+         MOVWF PORTA
+         MOVLW 0x01
+         MOVWF AUX3
+         RETURN
+
 
 END
